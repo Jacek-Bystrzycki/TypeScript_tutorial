@@ -11,11 +11,12 @@ interface List {
 
 export default class FullList implements List {
   static instance: FullList = new FullList(); //singleton class
-  /**
+  /*
    * The Singleton's constructor should always be private to prevent direct
    * construction calls with the `new` operator.
    */
   private constructor(private _list: ListItem[] = []) {}
+
   get list(): ListItem[] {
     return this._list;
   }
@@ -24,13 +25,15 @@ export default class FullList implements List {
     if (typeof storedList !== 'string') return;
     const parsedList: { _id: string; _item: string; _checked: boolean }[] =
       JSON.parse(storedList);
+    console.log(parsedList);
+
     parsedList.forEach((itemObj) => {
       const newListItem = new ListItem(
         itemObj._id,
         itemObj._item,
         itemObj._checked
       );
-      //   this.addItem(newListItem);
+      // this.addItem(newListItem);
       FullList.instance.addItem(newListItem);
     });
   }

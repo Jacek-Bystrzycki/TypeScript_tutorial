@@ -23,13 +23,14 @@ const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
   }
   return { arg, is: !!arg };
 };
-
 console.log(isTrue(null));
+console.log(isTrue<null>(null));
 console.log(isTrue(undefined));
 console.log(isTrue(NaN));
 console.log(isTrue(0));
 console.log(isTrue(-0));
 console.log(isTrue(1));
+console.log(isTrue<number>(1));
 console.log(isTrue(''));
 console.log(isTrue('Jacek'));
 console.log(isTrue([])); //modified
@@ -56,6 +57,9 @@ const checkBoolValue = <T>(arg: T): BoolCheck<T> => {
   return { value: arg, is: !!arg };
 };
 
+const boolCheck = checkBoolValue('Jacek');
+console.log(boolCheck);
+
 interface HasID {
   id: number;
 }
@@ -66,10 +70,7 @@ const processUser = <T extends HasID>(user: T): T => {
 // console.log(processUser({name:"Jacek"}));
 console.log(processUser({ name: 'Jacek', id: 1 }));
 
-const getUsersProperty = <T extends HasID, K extends keyof T>(
-  users: T[],
-  key: K
-): T[K][] => {
+const getUsersProperty = <T extends HasID, K extends keyof T>(users: T[], key: K): T[K][] => {
   return users.map((user) => user[key]);
 };
 
@@ -146,11 +147,7 @@ console.log(store.state);
 store.state = 'Aga';
 console.log(store.state);
 
-const myState = new StateObject<(string | number | boolean)[]>([
-  'Jacek',
-  37,
-  true,
-]);
+const myState = new StateObject<(string | number | boolean)[]>(['Jacek', 37, true]);
 console.log(myState.state);
 myState.state = ['Aga', 38];
 console.log(myState.state);

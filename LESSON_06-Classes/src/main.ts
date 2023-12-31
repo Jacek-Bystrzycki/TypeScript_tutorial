@@ -65,12 +65,20 @@ interface Musican {
 }
 
 class Guitarist implements Musican {
-  constructor(public name: string, public instrument: string) {
-    this.name = name;
+  constructor(private _name: string, public instrument: string) {
+    // this.name = name;
     this.instrument = instrument;
   }
   public play(action: string) {
     return `${this.name} ${action} the ${this.instrument}`;
+  }
+
+  //when we want a prop to be private in constructor, there must setup getter and/or setter on this attribute when class implements interface
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
   }
 }
 
