@@ -46,16 +46,13 @@ function App() {
     return () => console.log('Unmounting');
   }, [users]);
 
+  //USECALLBACK=========================
   // const addTwo = useCallback(()=>{
   //   setCount(prev=>prev+2)
   // },[])
-
-  //USECALLBACK=========================
   //in case if we want pass event into function:
   const addTwo = useCallback(
-    (
-      ev: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
-    ): void => {
+    (ev: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>): void => {
       setCount((prev) => prev + 2);
     },
     []

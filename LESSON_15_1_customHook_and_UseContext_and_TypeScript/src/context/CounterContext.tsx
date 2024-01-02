@@ -67,13 +67,6 @@ type ChildrenType = {
 };
 
 //creating component to use context (global context) and this component returns customHook as value
-export const CounterProvider = ({
-  children,
-  ...initState
-}: ChildrenType & StateType): ReactElement => {
-  return (
-    <CounterContext.Provider value={useCounterContext(initState)}>
-      {children}
-    </CounterContext.Provider>
-  );
+export const CounterProvider = ({ children, ...initState }: ChildrenType & StateType): ReactElement => {
+  return <CounterContext.Provider value={useCounterContext(initState)}>{children}</CounterContext.Provider>;
 };
