@@ -14,16 +14,11 @@ class Coder {
 //Visibility modifiers
 class Coder2 {
   secondLang!: string;
-  constructor(
-    public readonly name: string,
-    public music: string,
-    private age: number,
-    protected lang: string = 'TypeScript'
-  ) {
-    this.name = name;
-    this.music = music;
-    this.age = age;
-    this.lang = lang;
+  constructor(public readonly name: string, public music: string, private age: number, protected lang: string = 'TypeScript') {
+    // this.name = name; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
+    // this.music = music;
+    // this.age = age;
+    // this.lang = lang;
   }
 
   public getAge() {
@@ -38,14 +33,9 @@ console.log(jacek);
 console.log(jacek.getAge());
 
 class WebDev extends Coder2 {
-  constructor(
-    public computer: string,
-    name: string,
-    music: string,
-    age: number
-  ) {
+  constructor(public computer: string, name: string, music: string, age: number) {
     super(name, music, age);
-    this.computer = computer;
+    // this.computer = computer; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
   }
   public getLang() {
     return `I write in ${this.lang} language`;
@@ -67,7 +57,7 @@ interface Musican {
 class Guitarist implements Musican {
   constructor(private _name: string, public instrument: string) {
     // this.name = name;
-    this.instrument = instrument;
+    // this.instrument = instrument; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
   }
   public play(action: string) {
     return `${this.name} ${action} the ${this.instrument}`;
@@ -95,7 +85,7 @@ class Peeps {
 
   public id: number;
   constructor(public name: string) {
-    this.name = name;
+    // this.name = name; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
     this.id = ++Peeps.count;
   }
 }

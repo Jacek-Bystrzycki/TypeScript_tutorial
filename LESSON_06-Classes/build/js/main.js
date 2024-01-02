@@ -14,10 +14,10 @@ class Coder2 {
         this.music = music;
         this.age = age;
         this.lang = lang;
-        this.name = name;
-        this.music = music;
-        this.age = age;
-        this.lang = lang;
+        // this.name = name; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
+        // this.music = music;
+        // this.age = age;
+        // this.lang = lang;
     }
     getAge() {
         return `Hello, I'm ${this.age} years old`;
@@ -32,7 +32,7 @@ class WebDev extends Coder2 {
     constructor(computer, name, music, age) {
         super(name, music, age);
         this.computer = computer;
-        this.computer = computer;
+        // this.computer = computer; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
     }
     getLang() {
         return `I write in ${this.lang} language`;
@@ -42,14 +42,21 @@ const aga = new WebDev('MyPC', 'Aga', 'Hardcore', 38);
 console.log(aga.getAge());
 console.log(aga.getLang());
 class Guitarist {
-    constructor(name, instrument) {
-        this.name = name;
+    constructor(_name, instrument) {
+        this._name = _name;
         this.instrument = instrument;
-        this.name = name;
-        this.instrument = instrument;
+        // this.name = name;
+        // this.instrument = instrument; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
     }
     play(action) {
         return `${this.name} ${action} the ${this.instrument}`;
+    }
+    //when we want a prop to be private in constructor, there must setup getter and/or setter on this attribute when class implements interface
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        this._name = value;
     }
 }
 const newUser = new Guitarist('Stefan', 'piano');
@@ -61,7 +68,7 @@ class Peeps {
     }
     constructor(name) {
         this.name = name;
-        this.name = name;
+        // this.name = name; //this is unneccessary since "public" is provided in constructor and this cause double assignation in output js file
         this.id = ++Peeps.count;
     }
 }
